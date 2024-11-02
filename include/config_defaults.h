@@ -21,9 +21,11 @@
 #define DISP_H 240
 #endif
 
-// !! IMPORTANT: DISP_H must be divisble by DISP_CHUNK_H !!
-#ifndef DISP_CHUNK_H
-#define DISP_CHUNK_H 8
+// !! IMPORTANT: DISP_H must be divisible by (1<<DISP_CHUNK_H_LD) !!
+// DISP_H % (1<<DISP_CHUNK_H_LD) has to be zero
+#ifndef DISP_CHUNK_H_LD
+// 2^DISP_CHUNK_H_LD must be DISP_CHUNK_H
+#define DISP_CHUNK_H_LD 3
 #endif
 
 /*
@@ -139,10 +141,10 @@
 #define THEME_FOREGROUND_DIMMED_COLOR rgb888(122, 122, 122)
 #endif
 #ifndef THEME_PRIMARY_COLOR
-#define THEME_PRIMARY_COLOR rgb888(0, 209, 178)
+#define THEME_PRIMARY_COLOR rgb888(255, 255, 255)
 #endif
 #ifndef THEME_INFO_COLOR
-#define THEME_INFO_COLOR rgb888(32, 156, 238)
+#define THEME_INFO_COLOR rgb888(255, 255, 255)
 #endif
 #ifndef THEME_SUCCESS_COLOR
 #define THEME_SUCCESS_COLOR rgb888(72, 199, 116)
@@ -169,7 +171,7 @@
 #define CONFIG_APPV2_VERY_LONG_PRESS_TIME 3000
 #endif
 
-// The following settings are configureable later on using the web ui, you can still set the defaults here.
+// The following settings are configurable later on using the web ui, you can still set the defaults here.
 
 #ifndef CONFIG_DATE_FORMAT
 // possibilities: "mm/dd/yyyy","dd.mm.yyyy" and "yy.mm/dd"
